@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-card class="ion-margin-bottom" *ngFor="let coin of favorites">
+    <div class="card-header">
+      <div class="coin">
+        <span>{{coin.symbol}}</span>
+      </div>
+      <span class="coin-name">{{coin.name}}</span>
+    </div>
+    <ion-card-content>
+      <ion-label>
+        <b>CMC Rank: </b>
+        <span>{{coin.metrics.marketcap.rank}}</span>
+      </ion-label>
+      <ion-label>
+        <b>Price: </b>
+        <span>{{coin.metrics.market_data.price_usd | currency}}</span>
+      </ion-label>
+      <ion-label>
+        <b>Last Update: </b>
+        <span>{{coin.metrics.market_data.last_trade_at | date: 'medium'}}</span>
+      </ion-label>
+      <ion-label>
+        <b>Percent Change 1h: </b>
+        <span
+          >{{coin.metrics.market_data.percent_change_usd_last_1_hour |
+          currency}}</span
+        >
+      </ion-label>
+      <ion-label>
+        <b>Percent Change 24h: </b>
+        <span
+          >{{coin.metrics.market_data.percent_change_usd_last_24_hours |
+          currency}}</span
+        >
+      </ion-label>
+      <ion-label>
+        <b>Market Cap: </b>
+        <span>{{coin.metrics.marketcap.current_marketcap_usd | currency}}</span>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+  <div class="container-no-favorites" *ngIf="!favorites.length" color="warning">
+    <ion-item color="warning">
+      <ion-icon name="sad-outline" slot="start" color="light"></ion-icon>
+      <ion-label color="light">No Favorites Yet</ion-label>
+    </ion-item>
+  </div>
+</ion-content>

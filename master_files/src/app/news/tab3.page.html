@@ -1,0 +1,20 @@
+<ion-content>
+  <ng-template [ngIf]="news">
+    <div
+      class="custom-card"
+      *ngFor="let article of news"
+      (click)="openNewsDetails(article)"
+    >
+      <img *ngIf="article.urlToImage" [src]="article.urlToImage" />
+      <div *ngIf="!article.urlToImage" class="no-image"></div>
+      <span class="date">{{article.publishedAt | date: 'medium'}}</span>
+      <span class="card-info">{{article.title}}</span>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!news">
+    <div class="loading-container">
+      <ion-spinner color="warning"></ion-spinner>
+    </div>
+  </ng-template>
+</ion-content>
